@@ -5,9 +5,9 @@ relative_permalinks: true
 # Setup
 title:            Papas-Colors
 tagline:          'johwanghee, java, javascript'
-url:              http://johwanghee.github.io/papas-colors
+url:              http://johwanghee.github.io/papas-colors/
 paginate:         1
-baseurl:          /
+baseurl:          http://johwanghee.github.io/papas-colors/
 author:
   name:           Jo Hwanghee
   url:            http://johwanghee.github.io
