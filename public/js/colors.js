@@ -10,10 +10,8 @@ $(function() {
 	if(cstring != undefined && cstring.length > 0) {
 		parseData(cstring);
 	} else {
-		console.log("color parse start");
 		$.get(url+"assets/colors.csv", function(data) {
 			parseData(data);
-			
 			if(typeof(Storage) !== "undefined") {
 				localStorage.setItem("johwanghee.papas.colors",data);
 			}
@@ -22,6 +20,7 @@ $(function() {
 
 	$("#searchText").keyup(function() {
 		if($(this).val() == '') {
+			_gTempColor = _gColors;
 			displayColors(_gColors);
 		} else {
 			var temps = [];
@@ -35,6 +34,12 @@ $(function() {
 				}
 			}
 			displayColors(temps);
+		}
+	});
+
+	$(window).scroll(function() {
+		if($(window).scrollTop() + window.innerHeight == $(document).height()) {
+			displayColors();
 		}
 	});
 });
@@ -103,16 +108,28 @@ function completeFn() {
 	_gEnd = performance.now();
 }
 
-var colorEliment = '<div class="color" style="background:#{color};">{no}<br/>{name}&nbsp;-&nbsp;0x{hex}<br/>{type}&nbsp;:&nbsp;{matt}</div>';
-function displayColors(colors) {
-	$("#colors").empty();
+var _gTempColor;
+function displayColors(data) {
+	if(data != undefined) {
+		_gTempColor = data;
+		$("#colors").empty();
+	}
+	if(_gTempColor == undefined || _gTempColor.length == 0) {
+		return false;
+	}
+	var colors = _gTempColor.slice(0);
+	var cel = '<div class="color" style="background:#{color};">{cnt}.&nbsp;{no}<br/>{name}&nbsp;-&nbsp;0x{hex}<br/>{type}&nbsp;:&nbsp;{matt}</div>';
 	var i,len;
 	var el;
 	var color;
 	len = colors.length;
+	if(len > 50) {
+		len = 50;
+	}
 	for(i=0;i<len;++i) {
 		color = colors[i];
-		el = colorEliment;
+		el = cel;
+		el = el.replace("{cnt}",color[0]);
 		el = el.replace("{color}",color[4]);
 		el = el.replace("{no}",color[2]);
 		el = el.replace("{name}",color[5]);
@@ -120,6 +137,7 @@ function displayColors(colors) {
 		el = el.replace("{type}",color[6]);
 		el = el.replace("{matt}",color[7]);
 		$("#colors").append(el);
+		_gTempColor.splice( 0, 1 );
 	}
 }
 
