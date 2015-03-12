@@ -169,14 +169,14 @@ var _gBrand = 'all';
 var _gSearchTypeLabel = {"NO":"Model No.","NM":"Color Name","HX":"Hex Code"}
 function changeSearchType(type) {
 	_gSearchType = type;
-	var txt = "Search({type})";
+	var txt = "Search ( {type} )";
 	txt = txt.replace("{type}",_gSearchTypeLabel[type]);
 	$("#searchLabel").text(txt);
 }
 
 function changeBrand(brand) {
 	_gBrand = brand;
-	var txt = "Brand({brand})";
+	var txt = "Brand ( {brand} )";
 	txt = txt.replace("{brand}",brand);
 	$("#brandLebel").text(txt);
 	search($("#searchText").val());
