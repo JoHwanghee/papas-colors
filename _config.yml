@@ -7,7 +7,7 @@ title:            Papas-Colors
 tagline:          'johwanghee, java, javascript'
 url:              http://johwanghee.github.io/papas-colors/
 paginate:         1
-baseurl:          http://johwanghee.github.io/papas-colors/
+baseurl:          /papas-colors/
 author:
   name:           Jo Hwanghee
   url:            http://johwanghee.github.io
