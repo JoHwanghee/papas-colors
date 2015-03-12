@@ -12,18 +12,29 @@
             <ul class="nav navbar-nav">
               <li><img src="{{ site.baseurl }}public/logo.png" style="margin:7px 10px 0 0;"/></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id="searchType">NO</span> <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id="brand">Brand(all)</span> <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#" onclick="changeCType('NO');return false;">Model No.</a></li>
-                  <li><a href="#" onclick="changeCType('NM');return false;">Color Name</a></li>
-                  <li><a href="#" onclick="changeCType('HX');return false;">Hex Code</a></li>
+                  <li><a href="#" onclick="changeBrand('all');return false;">all</a></li>
+                  <li><a href="#" onclick="changeBrand('Tamiya');return false;">Tamiya</a></li>
+                  <li><a href="#" onclick="changeBrand('Vallejo');return false;">Vallejo</a></li>
+                  <li><a href="#" onclick="changeBrand('Testors');return false;">Testors</a></li>
+                  <li><a href="#" onclick="changeBrand('Humbrol');return false;">Humbrol</a></li>
+                  <li><a href="#" onclick="changeBrand('mr-hobby');return false;">mr-hobby</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id="searchType">Search Type(Model No.)</span> <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#" onclick="changeSearchType('NO');return false;">Model No.</a></li>
+                  <li><a href="#" onclick="changeSearchType('NM');return false;">Color Name</a></li>
+                  <li><a href="#" onclick="changeSearchType('HX');return false;">Hex Code</a></li>
                 </ul>
               </li>
             </ul>
           	<div class="collapse navbar-collapse">
           		<form class="navbar-form navbar-left" role="search">
           			<div class="form-group">
-          				<input id="searchText" type="text" class="form-control" placeholder="Search" style="width:450px;">
+          				<input id="searchText" type="text" class="form-control" placeholder="Search">
           			</div>
           		</form>
           	</div>
@@ -37,7 +48,7 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: '%Y' }}</time>. All rights reserved.
+          Copyright &copy; Papas Workroom <time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: '%Y' }}</time>. All rights reserved.
         </small>
       </footer>
     </div>
