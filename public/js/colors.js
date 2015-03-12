@@ -37,8 +37,8 @@ function search(searchKeys) {
 		var i, key;
 		var keys = searchKeys.split(',');
 		var c;
-		for(i in keys) {
-			key = keys[i];
+		for(i in searchKeys) {
+			key = searchKeys[i];
 			if(key.length > 1) {
 				c = getColors(_gColors[_gBrand], _gSearchType, key);
 				if(c.length > 0) {
