@@ -272,11 +272,6 @@ tbody tr:nth-child(odd) th {
   width : 80%;
 }
 
-.colors {
-  margin-top: 55px;
-}
-
-
 .color {
   text-shadow: 0 0 3px #000; /* horizontal-offset vertical-offset 'blur' colour */
   -moz-text-shadow: 0 0 3px #000;

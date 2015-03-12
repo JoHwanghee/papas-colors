@@ -133,9 +133,10 @@ function displayColors(data) {
 	if(_gTempColor == undefined || _gTempColor.length == 0) {
 		return false;
 	}
+	var margin = $("#nav").height()+5;
 	var colors = _gTempColor.slice(0);
-	var topCel = '<div class="color" style="background:#000;text-align:center;">{title}<br/></div>';
-	var cel = '<div class="color" style="background:#{color};">{no}<br/>{name}&nbsp;-&nbsp;0x{hex}<br/>{type}&nbsp;:&nbsp;{matt}</div>';
+	var topCel = '<div class="color" style="background:#000;text-align:center;margin-top:{margin}px;">{title}<br/></div>';
+	var cel = '<div class="color" style="background:#{color};margin-top:{margin}px;">{no}<br/>{name}&nbsp;-&nbsp;0x{hex}<br/>{type}&nbsp;:&nbsp;{matt}</div>';
 	var i,len;
 	var el;
 	var color;
@@ -147,6 +148,7 @@ function displayColors(data) {
 		if(color[0] == 0) {
 			el = topCel;
 			el = el.replace("{title}",color[1]);
+			el = el.replace("{margin}",(i==0)? margin : 1 );
 		} else {
 			el = cel;
 			el = el.replace("{color}",color[4]);
@@ -155,6 +157,7 @@ function displayColors(data) {
 			el = el.replace("{hex}",color[4]);
 			el = el.replace("{type}",color[6]);
 			el = el.replace("{matt}",color[7]);
+			el = el.replace("{margin}",(i==0)? margin : 1 );
 		}
 		$("#colors").append(el);
 		_gTempColor.splice( 0, 1 );
@@ -166,15 +169,15 @@ var _gBrand = 'all';
 var _gSearchTypeLabel = {"NO":"Model No.","NM":"Color Name","HX":"Hex Code"}
 function changeSearchType(type) {
 	_gSearchType = type;
-	var txt = "Search Type({type})";
+	var txt = "Search({type})";
 	txt = txt.replace("{type}",_gSearchTypeLabel[type]);
-	$("#searchType").text(txt);
+	$("#searchLabel").text(txt);
 }
 
 function changeBrand(brand) {
 	_gBrand = brand;
 	var txt = "Brand({brand})";
 	txt = txt.replace("{brand}",brand);
-	$("#brand").text(txt);
+	$("#brandLebel").text(txt);
 	search($("#searchText").val());
 }

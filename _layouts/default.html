@@ -8,11 +8,11 @@
     <div class="container content">
       <header class="masthead">
         <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container">
+          <div id="nav" class="container">
             <ul class="nav navbar-nav">
               <li><img src="{{ site.baseurl }}public/logo.png" style="margin:7px 10px 0 0;"/></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id="brand">Brand(all)</span> <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id="brandLebel">Brand(all)</span> <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="#" onclick="changeBrand('all');return false;">all</a></li>
                   <li><a href="#" onclick="changeBrand('Tamiya');return false;">Tamiya</a></li>
@@ -23,7 +23,7 @@
                 </ul>
               </li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id="searchType">Search Type(Model No.)</span> <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id="searchLabel">Search(Model No.)</span> <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="#" onclick="changeSearchType('NO');return false;">Model No.</a></li>
                   <li><a href="#" onclick="changeSearchType('NM');return false;">Color Name</a></li>
