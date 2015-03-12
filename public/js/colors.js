@@ -27,8 +27,8 @@ $(function() {
 			displayColors();
 		}
 	});
-	
-	$("#colors").css({"margin-top":$("#nav").height()+5});
+
+	$("#colors").css({"margin-top":$("#nav").outerHeight()+5});
 });
 
 function search(searchKeys) {
