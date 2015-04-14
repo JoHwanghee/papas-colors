@@ -16,12 +16,14 @@ function init() {
 	if(typeof(Storage) !== "undefined") {
 		cstring = localStorage.getItem("johwanghee.papas.colors");
 	}
-	debug("cstring len = "+cstring.length);
+	if(cstring) { debug("cstring len = "+cstring.length); }
+	if(!cstring) { debug("cstring len = undefined"); }
 	if(cstring != undefined && cstring.length > 0) {
 		parseData(cstring);
 	} else {
 		$.get(url+"assets/colors.csv", function(data) {
-			debug("csv len = "+data.length);
+			if(data) { debug("csv len = "+data.length); }
+			if(!data) { debug("csv len = undefined"); }
 			parseData(data);
 			if(typeof(Storage) !== "undefined") {
 				localStorage.setItem("johwanghee.papas.colors",data);
@@ -65,10 +67,12 @@ function search(searchKeys) {
 }
 
 function parseData(data) {
-	debug("data len = "+data.length);
+	if(data) { debug("data len = "+data.length); }
+	if(!data) { debug("data len = undefined"); }
 	_gStart = performance.now();
 	var results = Papa.parse(data, buildConfig());
-	debug("parse len = "+results.data.length);
+	if(results) { debug("results len = "+results.length); }
+	if(!results) { debug("results len = undefined"); }
 	_gColors['all'] = results.data;
 	var i, temp, type;
 	for(i in results.data) {
@@ -188,9 +192,9 @@ function changeSearchType(type) {
 
 function changeBrand(brand) {
 	_gBrand = brand;
-	init();
 	var txt = "Brand ( {brand} )";
 	txt = txt.replace("{brand}",brand);
 	$("#brandLebel").text(txt);
+	init();
 	search($("#searchText").val());
 }
