@@ -1,29 +1,16 @@
 var _gStart, _gEnd;
 var _gColors = {};
-var _gLog = '- start -';
-var logCnt = 0;
-function debug(msg) {
-	logCnt++;
-	_gLog += "\n "+logCnt+": - "+msg;
-	console.log(msg);
-}
-$(function() {
-	init();
-});
 
-function init() {
+$(function() {
 	var cstring;
 	if(typeof(Storage) !== "undefined") {
 		cstring = localStorage.getItem("johwanghee.papas.colors");
 	}
-	if(cstring) { debug("cstring len = "+cstring.length); }
-	if(!cstring) { debug("cstring len = undefined"); }
+
 	if(cstring != undefined && cstring.length > 0) {
 		parseData(cstring);
 	} else {
 		$.get(url+"assets/colors.csv", function(data) {
-			if(data) { debug("csv len = "+data.length); }
-			if(!data) { debug("csv len = undefined"); }
 			parseData(data);
 			if(typeof(Storage) !== "undefined") {
 				localStorage.setItem("johwanghee.papas.colors",data);
@@ -42,7 +29,7 @@ function init() {
 	});
 
 	$("#colors").css({"margin-top":$("#nav").outerHeight()+5});
-}
+});
 
 function search(searchKeys) {
 	if(searchKeys == '') {
@@ -67,23 +54,8 @@ function search(searchKeys) {
 }
 
 function parseData(data) {
-	if(data) { debug("data len = "+data.length); }
-	if(!data) { debug("data len = undefined"); }
 	_gStart = performance.now();
-	var results = Papa.parse(data, buildConfig());
-	if(results) { debug("results len = "+results.length); }
-	if(!results) { debug("results len = undefined"); }
-	_gColors['all'] = results.data;
-	var i, temp, type;
-	for(i in results.data) {
-		temp = results.data[i];
-		type = temp[1];
-		if(_gColors[type] == undefined) {
-			_gColors[type] = [];
-		}
-		_gColors[type].push(temp);
-	}
-	displayColors(_gColors['all']);
+	Papa.parse(data, buildConfig());
 }
 
 function getColors(data, type, key) {
@@ -139,8 +111,19 @@ function errorFn(error, file) {
 	console.log("ERROR:", error, file);
 }
 
-function completeFn() {
+function completeFn(results) {
 	_gEnd = performance.now();
+	_gColors['all'] = results.data;
+	var i, temp, type;
+	for(i in results.data) {
+		temp = results.data[i];
+		type = temp[1];
+		if(_gColors[type] == undefined) {
+			_gColors[type] = [];
+		}
+		_gColors[type].push(temp);
+	}
+	displayColors(_gColors['all']);
 }
 
 var _gTempColor;
@@ -195,6 +178,5 @@ function changeBrand(brand) {
 	var txt = "Brand ( {brand} )";
 	txt = txt.replace("{brand}",brand);
 	$("#brandLebel").text(txt);
-	init();
 	search($("#searchText").val());
 }
