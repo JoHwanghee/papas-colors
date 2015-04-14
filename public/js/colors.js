@@ -5,6 +5,7 @@ var logCnt = 0;
 function debug(msg) {
 	logCnt++;
 	_gLog += "\n "+logCnt+": - "+msg;
+	console.log(msg);
 }
 $(function() {
 	init();
