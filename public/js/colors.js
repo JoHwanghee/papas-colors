@@ -56,6 +56,7 @@ function search(searchKeys) {
 function parseData(data) {
 	_gStart = performance.now();
 	var results = Papa.parse(data, buildConfig());
+	console.log(results.data.length);
 	_gColors['all'] = results.data;
 	var i, temp, type;
 	for(i in results.data) {
