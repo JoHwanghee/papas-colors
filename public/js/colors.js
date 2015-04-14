@@ -1,19 +1,18 @@
-var _gStart, _gEnd;
 var _gColors = {};
 
 $(function() {
-	var cstring;
+	var colorJson;
 	if(typeof(Storage) !== "undefined") {
-		cstring = localStorage.getItem("johwanghee.papas.colors");
+		colorJson = localStorage.getItem("johwanghee.papas.colors.v.0.0.2");
 	}
 
-	if(cstring != undefined && cstring.length > 0) {
-		parseData(cstring);
+	if(colorJson != undefined && colorJson.length > 0) {
+		parseData(colorJson);
 	} else {
-		$.get(url+"assets/colors.csv", function(data) {
+		$.getJSON(url+"assets/colors.json", function(data) {
 			parseData(data);
 			if(typeof(Storage) !== "undefined") {
-				localStorage.setItem("johwanghee.papas.colors",data);
+				localStorage.setItem("johwanghee.papas.colors.v.0.0.2",data);
 			}
 		});
 	}
@@ -54,8 +53,17 @@ function search(searchKeys) {
 }
 
 function parseData(data) {
-	_gStart = performance.now();
-	Papa.parse(data, buildConfig());
+	_gColors['all'] = data;
+	var i, temp, type;
+	for(i in data) {
+		temp = data[i];
+		type = temp[1];
+		if(_gColors[type] == undefined) {
+			_gColors[type] = [];
+		}
+		_gColors[type].push(temp);
+	}
+	displayColors(_gColors['all']);
 }
 
 function getColors(data, type, key) {
@@ -85,45 +93,6 @@ function getColors(data, type, key) {
 		}
 	}
 	return temp;
-}
-
-function buildConfig() {
-	return {
-		delimiter: "",
-		newline: "",
-		header: false,
-		dynamicTyping: false,
-		preview: 0,
-		step: undefined,
-		encoding: "",
-		worker: false,
-		comments: "#",
-		complete: completeFn,
-		error: errorFn,
-		download: false,
-		fastMode: false,
-		skipEmptyLines: true,
-		chunk: undefined
-	};
-}
-
-function errorFn(error, file) {
-	console.log("ERROR:", error, file);
-}
-
-function completeFn(results) {
-	_gEnd = performance.now();
-	_gColors['all'] = results.data;
-	var i, temp, type;
-	for(i in results.data) {
-		temp = results.data[i];
-		type = temp[1];
-		if(_gColors[type] == undefined) {
-			_gColors[type] = [];
-		}
-		_gColors[type].push(temp);
-	}
-	displayColors(_gColors['all']);
 }
 
 var _gTempColor;
