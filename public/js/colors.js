@@ -4,7 +4,7 @@ var _gLog = '- start -';
 var logCnt = 0;
 function debug(msg) {
 	logCnt++;
-	_gLog += "\n "+logCnt": - "+msg;
+	_gLog += "\n "+logCnt+": - "+msg;
 }
 $(function() {
 	var cstring;
