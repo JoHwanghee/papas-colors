@@ -1,16 +1,22 @@
 var _gStart, _gEnd;
 var _gColors = {};
-var _gLen = 0;
+var _gLog = '- start -';
+var logCnt = 0;
+function debug(msg) {
+	logCnt++;
+	_gLog += "\n "+logCnt": - "+msg;
+}
 $(function() {
 	var cstring;
 	if(typeof(Storage) !== "undefined") {
 		cstring = localStorage.getItem("johwanghee.papas.colors");
 	}
-
+	debug("cstring len = "+cstring.length);
 	if(cstring != undefined && cstring.length > 0) {
 		parseData(cstring);
 	} else {
 		$.get(url+"assets/colors.csv", function(data) {
+			debug("csv len = "+data.length);
 			parseData(data);
 			if(typeof(Storage) !== "undefined") {
 				localStorage.setItem("johwanghee.papas.colors",data);
@@ -54,9 +60,10 @@ function search(searchKeys) {
 }
 
 function parseData(data) {
+	debug("data len = "+data.length);
 	_gStart = performance.now();
 	var results = Papa.parse(data, buildConfig());
-	_gLen = results.data.length;
+	debug("parse len = "+results.data.length);
 	_gColors['all'] = results.data;
 	var i, temp, type;
 	for(i in results.data) {
