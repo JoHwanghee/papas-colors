@@ -7,6 +7,10 @@ function debug(msg) {
 	_gLog += "\n "+logCnt+": - "+msg;
 }
 $(function() {
+	init();
+});
+
+function init() {
 	var cstring;
 	if(typeof(Storage) !== "undefined") {
 		cstring = localStorage.getItem("johwanghee.papas.colors");
@@ -35,7 +39,7 @@ $(function() {
 	});
 
 	$("#colors").css({"margin-top":$("#nav").outerHeight()+5});
-});
+}
 
 function search(searchKeys) {
 	if(searchKeys == '') {
@@ -183,6 +187,7 @@ function changeSearchType(type) {
 
 function changeBrand(brand) {
 	_gBrand = brand;
+	init();
 	var txt = "Brand ( {brand} )";
 	txt = txt.replace("{brand}",brand);
 	$("#brandLebel").text(txt);
