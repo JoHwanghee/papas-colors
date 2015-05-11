@@ -1,7 +1,5 @@
 # papas-colors
 
-[![Join the chat at https://gitter.im/JoHwanghee/papas-colors](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/JoHwanghee/papas-colors?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 파파공방에서 하는 도료색 검색용 사이트 프로젝트 입니다.<br/>
 [http://johwanghee.github.io/papas-colors/](http://johwanghee.github.io/papas-colors/)
 
