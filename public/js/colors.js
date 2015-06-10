@@ -128,7 +128,7 @@ function displayColors(data) {
 			el = el.replace("{matt}",color[7]);
 		}
 		$("#colors").append(el);
-		_gTempColor.splice( 0, 1 );
+		//_gTempColor.splice( 0, 1 );
 	}
 }
 
