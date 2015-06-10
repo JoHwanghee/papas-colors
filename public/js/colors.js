@@ -1,21 +1,9 @@
 var _gColors = {};
 
 $(function() {
-	var colorJson;
-	if(typeof(Storage) !== "undefined") {
-		colorJson = localStorage.getItem("johwanghee.papas.colors.v.0.0.2");
-	}
-
-	if(colorJson != undefined && colorJson.length > 0) {
-		parseData(colorJson);
-	} else {
-		$.getJSON(url+"assets/colors.json", function(data) {
-			parseData(data);
-			if(typeof(Storage) !== "undefined") {
-				localStorage.setItem("johwanghee.papas.colors.v.0.0.2",data);
-			}
-		});
-	}
+	$.getJSON(url+"assets/colors.json", function(data) {
+		parseData(data);
+	});
 
 	$("#searchText").keyup(function() {
 		search($(this).val());
@@ -128,7 +116,7 @@ function displayColors(data) {
 			el = el.replace("{matt}",color[7]);
 		}
 		$("#colors").append(el);
-		//_gTempColor.splice( 0, 1 );
+		_gTempColor.splice( 0, 1 );
 	}
 }
 
